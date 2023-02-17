@@ -1,6 +1,6 @@
 FROM node:16.9.0-alpine
 
-WORKDIR /
+WORKDIR /app
 
 COPY package*.json ./
 
@@ -8,4 +8,4 @@ RUN npm install
 
 COPY . .
 
-CMD [ "node", "index.js" ]
+CMD node deploy.js;node index.js

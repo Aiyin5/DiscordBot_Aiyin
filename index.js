@@ -36,4 +36,13 @@ client.on(Events.InteractionCreate, async interaction => {
     }
 });
 
+client.on('interactionCreate', async (interaction) => {
+    if (!interaction.isChatInputCommand()) return;
+
+    if (interaction.commandName === 'ping') {
+        await interaction.reply('Pong!');
+    }
+});
+
+
 client.login(token);
