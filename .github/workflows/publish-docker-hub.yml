@@ -43,3 +43,10 @@ jobs:
           # FIXME: Chrome doesn't seem to install on ARM, so skip it for now
           # platforms: linux/amd64,linux/arm64
           labels: ${{ steps.meta.outputs.labels }}
+      - name: ssh docker login
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.TENCENT_CLOUD_IP }}
+          username: ${{ secrets.TENCENT_CLOUD_NAME }}
+          password: ${{ secrets.TENCENT_CLOUD_PASSWORD }}
+          script: cd /usr/Discord && sh deploy.sh
