@@ -41,7 +41,7 @@ module.exports = {
                 .setColor(2895667)
                 .setTimestamp()
                 .setAuthor({ name: 'ChatGPT', iconURL: 'https://openai.com/content/images/2022/05/openai-avatar.png'})
-                .setDescription(`\`\`\`${response.data.choices[0].text}\`\`\``)
+                .setDescription('问题:'+message+response.data.choices[0].text)
             await interaction.editReply({
                 embeds: [embed]
             });
