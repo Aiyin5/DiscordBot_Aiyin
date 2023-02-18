@@ -34,18 +34,17 @@ module.exports = {
                 model: "text-ada-001",
                 max_tokens: 2048,
                 temperature: 0.5,
-                prompt: message
+                prompt: message,
             })
 
-/*            const embed = new EmbedBuilder()
+            const embed = new EmbedBuilder()
                 .setColor(2895667)
                 .setTimestamp()
                 .setAuthor({ name: 'ChatGPT', iconURL: 'https://openai.com/content/images/2022/05/openai-avatar.png'})
-                .setDescription(`\`\`\`${response.data.choices[0].text}\`\`\``) */
-            await interaction.reply(response);
-/*            await interaction.editReply({
+                .setDescription(`\`\`\`${response.data.choices[0].text}\`\`\``)
+            await interaction.editReply({
                 embeds: [embed]
-            });*/
+            });
         } catch (error) {
             console.log(error)
             return await interaction.editReply({
