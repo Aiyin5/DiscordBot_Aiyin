@@ -2,7 +2,7 @@ const { REST } = require("@discordjs/rest");
 const { Routes } = require('discord-api-types/v9');
 const fs = require('fs');
 
-const { token,guildId,client_id } = require('../../config.json');
+const { token,guildId,clientId } = require('../../config.json');
 module.exports = (client) => {
     client.handleCommands = async (commandFolders, path) => {
         client.commandArray = [];
@@ -24,7 +24,7 @@ module.exports = (client) => {
                 console.log('Started refreshing application (/) commands.');
 
                 await rest.put(
-                    Routes.applicationCommands(client_id), {
+                    Routes.applicationCommands(clientId), {
                         body: client.commandArray
                     },
                 );
