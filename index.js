@@ -11,7 +11,7 @@ const { token } = require('./config.json');
 
 (async () => {
     for (file of functions) {
-        require(`./functions/${file}`)(client);
+        require(`./src/functions/${file}`)(client);
     }
     client.handleEvents(eventFiles, "./src/events");
     client.handleCommands(commandFolders, "./src/commands");
