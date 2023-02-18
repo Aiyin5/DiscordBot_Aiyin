@@ -13,6 +13,7 @@ const configuration = new Configuration({
 
 const openai = new OpenAIApi(configuration);
 
+
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('chatgpt')
@@ -22,30 +23,29 @@ module.exports = {
         await interaction.deferReply();
 
         const message = interaction.options.getString('message');
-
+        /*               top_p: 1,
+                       presence_penalty: 0.5,
+                       frequency_penalty: 0.5,
+                       best_of: 1,
+                       n: 1,*/
+        /*                stream: false,*/
         try {
             const response = await openai.createCompletion({
                 model: "text-ada-001",
                 max_tokens: 2048,
                 temperature: 0.5,
-                top_p: 1,
-                presence_penalty: 0.5,
-                frequency_penalty: 0.5,
-                best_of: 1,
-                n: 1,
-                stream: false,
                 prompt: message
             })
 
-            const embed = new EmbedBuilder()
+/*            const embed = new EmbedBuilder()
                 .setColor(2895667)
                 .setTimestamp()
                 .setAuthor({ name: 'ChatGPT', iconURL: 'https://openai.com/content/images/2022/05/openai-avatar.png'})
-                .setDescription(`\`\`\`${response.data.choices[0].text}\`\`\``)
-
-            await interaction.editReply({
+                .setDescription(`\`\`\`${response.data.choices[0].text}\`\`\``) */
+            await interaction.reply(response);
+/*            await interaction.editReply({
                 embeds: [embed]
-            });
+            });*/
         } catch (error) {
             console.log(error)
             return await interaction.editReply({
@@ -57,3 +57,5 @@ module.exports = {
 
     }
 }
+
+
