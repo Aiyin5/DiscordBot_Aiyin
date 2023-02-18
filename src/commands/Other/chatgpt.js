@@ -31,10 +31,10 @@ module.exports = {
         /*                stream: false,*/
         try {
             const response = await openai.createCompletion({
-                model: "text-ada-001",
+                model: "text-davinci-003",
                 prompt: message,
-                max_tokens: 7,
-                temperature: 0,
+                max_tokens: 2048,
+                temperature: 0.5,
             })
 
             const embed = new EmbedBuilder()
