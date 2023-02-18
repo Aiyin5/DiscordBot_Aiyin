@@ -32,9 +32,9 @@ module.exports = {
         try {
             const response = await openai.createCompletion({
                 model: "text-ada-001",
-                max_tokens: 2048,
-                temperature: 0.5,
                 prompt: message,
+                max_tokens: 7,
+                temperature: 0,
             })
 
             const embed = new EmbedBuilder()
