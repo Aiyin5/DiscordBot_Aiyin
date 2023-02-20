@@ -1,4 +1,5 @@
-const { Client, GatewayIntentBits, EmbedBuilder, PermissionsBitField, Permissions, MessageManager, Embed, Collection } = require(`discord.js`);
+const { request } = require('undici');
+const { Client, Events,GatewayIntentBits, EmbedBuilder, PermissionsBitField, Permissions, MessageManager, Embed, Collection } = require(`discord.js`);
 const fs = require('fs');
 const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.MessageContent] });
 client.commands = new Collection();
@@ -13,8 +14,8 @@ const { token } = require('./config.json');
     for (file of functions) {
         require(`./src/functions/${file}`)(client);
     }
-    client.on('interaction', (interaction) => {
-        console.log(interaction)
+    client.on(Events.MessageCreate, (message) => {
+        console.log(message)
     });
     //client.handleMessage();
     client.handleEvents(eventFiles, "./src/events");
