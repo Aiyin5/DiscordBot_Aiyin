@@ -8,18 +8,7 @@ module.exports = {
             const option = Math.floor(Math.random() * statusArray.length);
 
             try {
-                await client.user.setPresence({
-                    activities: [
-                        {
-                            name: statusArray[option].content,
-                            type: statusArray[option].type,
-
-                        },
-                    
-                    ],
-
-                    status: statusArray[option].status
-                })
+                await client.user.setPresence({ activities: [{ name: 'activity' }], status: 'idle' });
             } catch (error) {
                 console.error(error);
             }
