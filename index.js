@@ -15,5 +15,6 @@ const { token } = require('./config.json');
     }
     client.handleEvents(eventFiles, "./src/events");
     client.handleCommands(commandFolders, "./src/commands");
+    client.h
     client.login(token)
 })();
