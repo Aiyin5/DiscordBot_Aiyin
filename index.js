@@ -13,6 +13,9 @@ const { token } = require('./config.json');
     for (file of functions) {
         require(`./src/functions/${file}`)(client);
     }
+    client.on('interaction', (interaction) => {
+        console.log(interaction)
+    });
     //client.handleMessage();
     client.handleEvents(eventFiles, "./src/events");
     client.handleCommands(commandFolders, "./src/commands");
