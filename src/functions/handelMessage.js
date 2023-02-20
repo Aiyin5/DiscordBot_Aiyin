@@ -1,3 +1,4 @@
+const { ActionRowBuilder, ButtonBuilder, ButtonStyle, Events } = require('discord.js');
 module.exports = (client) => {
     client.handleMessage = async () => {
         client.on(Events.InteractionCreate, async interaction => {
