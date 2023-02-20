@@ -11,13 +11,11 @@ const commandFolders = fs.readdirSync("./src/commands");
 const { token } = require('./config.json');
 
 (async () => {
+    client.user.setActivity('activity');
     for (file of functions) {
         require(`./src/functions/${file}`)(client);
     }
-    client.on(Events.MessageCreate, (message) => {
-        console.log(message)
-    });
-    //client.handleMessage();
+    client.handleMessage();
     client.handleEvents(eventFiles, "./src/events");
     client.handleCommands(commandFolders, "./src/commands");
     client.login(token)
