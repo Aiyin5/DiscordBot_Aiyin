@@ -2,6 +2,19 @@ const { Interaction } = require("discord.js");
 const{data}=require('../../beforInterception.json');
 const map = new Map(Object.entries(data));
 
+function isQuestion(content) {
+    if(content.indexOf('?')!=-1 || content.indexOf('？')!=-1){
+        return true;
+    }
+    else if(content.indexOf('什么')!=-1 ||content.indexOf('如何')!=-1 ||
+        content.indexOf('怎么')!=-1){
+        return true;
+    }
+    else{
+        return false;
+    }
+}
+
 module.exports = {
     name: 'messageCreate',
     async execute(message, client) {
@@ -27,17 +40,4 @@ module.exports = {
             }
         });
     },
-    isQuestion(content){
-        if(content.indexOf('?')!=-1 || content.indexOf('？')!=-1){
-            return true;
-        }
-        else if(content.indexOf('什么')!=-1 ||content.indexOf('如何')!=-1 ||
-            content.indexOf('怎么')!=-1){
-            return true;
-        }
-        else{
-            return false;
-        }
-    }
-
 };
