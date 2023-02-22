@@ -7,7 +7,7 @@ module.exports = {
     async execute(message, client) {
         console.log(message);
         //如果消息的发起者是机器人，就不理会
-        if(message.clinet.user==client.user){
+        if(message.user.ClientUser.id=='1075663991554191370'){
             return;
         }
         let content=message.content.toLowerCase();
