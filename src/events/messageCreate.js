@@ -7,11 +7,10 @@ module.exports = {
     async execute(message, client) {
         //console.log(message.content);
         let content=message.content.toLowerCase();
-        map.some( async (value, key) => {
+        map.forEach( async (value, key) => {
             if(content.indexOf(key)!=-1){
                 console.log(value);
                 await message.reply({content:value});
-                return true;
             }
         });
     },
