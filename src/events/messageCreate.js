@@ -5,7 +5,11 @@ const map = new Map(Object.entries(data));
 module.exports = {
     name: 'messageCreate',
     async execute(message, client) {
-        //console.log(message.content);
+        console.log(message);
+        //如果消息的发起者是机器人，就不理会
+        if(message.clinet.user==client.user){
+            return;
+        }
         let content=message.content.toLowerCase();
         map.forEach( async (value, key) => {
             if(content.indexOf(key)!=-1){
