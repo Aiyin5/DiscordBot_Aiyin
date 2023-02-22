@@ -14,7 +14,7 @@ module.exports = {
         let content=message.content.toLowerCase();
         if(content.indexOf('<@1075663991554191370>')!=-1){
             //need to answer directly
-            await message.reply('谢谢： ${message.author.username:}');
+            await message.reply(`谢谢：: ${message.author.username}`);
             return;
         }
         content = content.replace(/\s*/g,"");
