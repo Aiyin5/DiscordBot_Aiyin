@@ -4,7 +4,7 @@ module.exports = {
     async execute(client) {
         console.log('Ready!');
         try {
-            await client.user.setPresence({activities: [{name: 'activity'}], status: 'idle'});
+            await client.user.setPresence({activities: [{name: 'ai_create'}], status: 'idle'});
         } catch (error) {
             console.error(error);
         }
