@@ -1,5 +1,5 @@
 const { Interaction } = require("discord.js");
-require('./interface/seedaoAi');
+const seeDaoAi=require('./interface/seedaoAi');
 function isQuestion(content) {
     if(content.includes('?') || content.includes('？')){
         return true;
