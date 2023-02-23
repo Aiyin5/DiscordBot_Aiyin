@@ -7,12 +7,17 @@ function isQuestion(content) {
         return true;
     }
     else if(content.indexOf('什么')!=-1 ||content.indexOf('如何')!=-1 ||
-        content.indexOf('怎么')!=-1){
+        content.indexOf('怎么')!=-1 || content.indexOf('哪些')!=-1){
         return true;
     }
     else{
         return false;
     }
+}
+
+function queueMap(content){
+    //confirm fist
+
 }
 
 module.exports = {
@@ -27,7 +32,7 @@ module.exports = {
         let content=message.content.toLowerCase();
         if(content.indexOf('<@1075663991554191370>')!=-1){
             //need to answer directly
-            await message.reply(`谢谢@我：: ${message.author.username}`);
+            await message.reply(`谢谢@我: ${message.author.username}`);
         }
         content = content.replace(/\s*/g,"");
         if(!isQuestion(content)){

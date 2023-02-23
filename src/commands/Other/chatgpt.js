@@ -16,9 +16,9 @@ const openai = new OpenAIApi(configuration);
 
 module.exports = {
     data: new SlashCommandBuilder()
-        .setName('chatgpt')
-        .setDescription('Chat with GPT-3')
-        .addStringOption(option => option.setName('message').setDescription('The message to send to GPT-3').setRequired(true)),
+        .setName('seeDaoAi')
+        .setDescription('Chat with seeDaoAi')
+        .addStringOption(option => option.setName('message').setDescription('The message to send to seeDaoAi').setRequired(true)),
     async execute(interaction) {
         await interaction.deferReply();
 
@@ -31,16 +31,17 @@ module.exports = {
         /*                stream: false,*/
         try {
             const response = await openai.createCompletion({
-                model: "text-davinci-003",
+                model: "babbage:ft-personal-2023-02-22-05-51-11",
                 prompt: message,
                 max_tokens: 2048,
-                temperature: 0.5,
+                temperature: 0,
+                stop:'END',
             })
 
             const embed = new EmbedBuilder()
                 .setColor(2895667)
                 .setTimestamp()
-                .setAuthor({ name: 'ChatGPT', iconURL: 'https://openai.com/content/images/2022/05/openai-avatar.png'})
+                .setAuthor({ name: 'seeDaoAi', iconURL: 'https://cdn.discordapp.com/avatars/1075663991554191370/ce9aa3da27d1f99a54ec4fb5d9d8d3a2.webp'})
                 .setDescription('问题:'+message+response.data.choices[0].text)
             await interaction.editReply({
                 embeds: [embed]
