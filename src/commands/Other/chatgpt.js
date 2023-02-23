@@ -16,7 +16,7 @@ const openai = new OpenAIApi(configuration);
 
 module.exports = {
     data: new SlashCommandBuilder()
-        .setName('seeDaoAi')
+        .setName('seedao')
         .setDescription('Chat with seeDaoAi')
         .addStringOption(option => option.setName('message').setDescription('The message to send to seeDaoAi').setRequired(true)),
     async execute(interaction) {
