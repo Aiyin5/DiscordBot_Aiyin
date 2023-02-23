@@ -1,6 +1,8 @@
 const { Interaction } = require("discord.js");
-const{data}=require('../../beforInterception.json');
-const map = new Map(Object.entries(data));
+const {data}=require('../../data/beforInterception.json');
+const {nounwords}=require('../../data/noun_words.json');
+const nounwordsMap=new Map(Object.entries(nounwords));
+const datamap = new Map(Object.entries(data));
 
 function isQuestion(content) {
     if(content.indexOf('?')!=-1 || content.indexOf('？')!=-1){
@@ -38,11 +40,14 @@ module.exports = {
         if(!isQuestion(content)){
             return;
         }
-        map.forEach( async (value, key) => {
-            if(content.indexOf(key)!=-1){
-                console.log(value);
-                await message.reply({content:value});
+        if(content.indexOf("什么")!=-1){
+            let key = nounwordsMap.keySet();
+            for (let i in key) {
+                if(content.indexOf("i")!=-1){
+                    await message.reply({content:nounwordsMap.get(i)});
+                    return;
+                }
             }
-        });
+        }
     },
 };
