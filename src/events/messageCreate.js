@@ -36,13 +36,16 @@ module.exports = {
         if(!isQuestion(content)){
             return;
         }
-        if(content.includes("什么")){
+        if(content.includes("什么")||content.includes("链接")){
             for (let i in client.nounwordsmap.keys()) {
                 if(content.includes(i)){
                     await message.reply(client.nounwordsmap.get(i));
                     break;
                 }
             }
+        }
+        else if(content.includes("如何")||content.includes("怎么")){
+
         }
     },
 };
