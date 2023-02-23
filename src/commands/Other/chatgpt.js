@@ -32,7 +32,7 @@ module.exports = {
         /*                stream: false,*/
         try {
             const response = await openai.createCompletion({
-                model: "babbage:ft-personal-2023-02-22-05-51-11",
+                model: "babbage:ft-personal-2023-02-23-07-22-38",
                 prompt: tryMessage,
                 max_tokens: 1024,
                 temperature: 0,
