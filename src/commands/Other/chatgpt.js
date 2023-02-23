@@ -23,6 +23,7 @@ module.exports = {
         await interaction.deferReply();
 
         const message = interaction.options.getString('message');
+        const tryMessage=message+' ->';
         /*               top_p: 1,
                        presence_penalty: 0.5,
                        frequency_penalty: 0.5,
@@ -32,7 +33,7 @@ module.exports = {
         try {
             const response = await openai.createCompletion({
                 model: "babbage:ft-personal-2023-02-22-05-51-11",
-                prompt: message,
+                prompt: tryMessage,
                 max_tokens: 2048,
                 temperature: 0,
                 stop:'END'
