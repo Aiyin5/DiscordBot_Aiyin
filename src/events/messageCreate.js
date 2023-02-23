@@ -1,15 +1,11 @@
 const { Interaction } = require("discord.js");
-const {data}=require('../../data/beforInterception.json');
-const {nounwords}=require('../../data/noun_words.json');
-const nounwordsMap=new Map(Object.entries(nounwords));
-const datamap = new Map(Object.entries(data));
 
 function isQuestion(content) {
-    if(content.indexOf('?')!=-1 || content.indexOf('？')!=-1){
+    if(content.includes('?') || content.includes('？')){
         return true;
     }
-    else if(content.indexOf('什么')!=-1 ||content.indexOf('如何')!=-1 ||
-        content.indexOf('怎么')!=-1 || content.indexOf('哪些')!=-1){
+    else if(content.includes('什么') ||content.includes('如何') ||
+        content.includes('怎么') || content.includes('哪些')){
         return true;
     }
     else{
@@ -28,22 +24,23 @@ module.exports = {
         console.log(message);
         //如果消息的发起者是机器人，就不理会
         let author=message.author;
-        if(author.id.indexOf('1075663991554191370')!=-1){
+        if(author.id.includes('1075663991554191370')){
             return;
         }
         let content=message.content.toLowerCase();
-        if(content.indexOf('<@1075663991554191370>')!=-1){
+        if(content.includes('<@1075663991554191370>')){
             //need to answer directly
             await message.reply(`谢谢@我: ${message.author.username}`);
         }
-        //content = content.replace(/\s*/g,"");
+        content = content.replace(/\s*/g,"");
         if(!isQuestion(content)){
             return;
         }
-        if(content.indexOf("什么")!=-1){
-            for (let i in nounwordsMap.keys()) {
-                if(content.indexOf(i)!=-1){
-                    await message.reply({content:nounwordsMap.get(i)});
+        if(content.includes("什么")){
+            for (let i in client.nounwordsmap.keys()) {
+                if(content.includes(i)){
+                    await message.reply(client.nounwordsmap.get(i));
+                    break;
                 }
             }
         }
