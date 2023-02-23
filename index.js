@@ -19,9 +19,7 @@ const { token } = require('./config.json');
 
 
 (async () => {
-/*    client.nounwordsmap.forEach((value, key) =>{
-        console.log(key);
-    } )*/
+    //console.log(client.nounwordsmap.keys());
     for (file of functions) {
         require(`./src/functions/${file}`)(client);
     }
