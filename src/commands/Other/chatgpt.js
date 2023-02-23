@@ -41,7 +41,7 @@ module.exports = {
             const embed = new EmbedBuilder()
                 .setColor(2895667)
                 .setTimestamp()
-                .setAuthor({ name: 'seeDaoAi', iconURL: 'https://cdn.discordapp.com/avatars/1075663991554191370/ce9aa3da27d1f99a54ec4fb5d9d8d3a2.webp'})
+                .setAuthor({ name: 'seeDaoAi'})
                 .setDescription('问题:'+message+response.data.choices[0].text)
             await interaction.editReply({
                 embeds: [embed]
