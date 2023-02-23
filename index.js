@@ -6,8 +6,8 @@ const {data}=require('./data/beforInterception.json');
 const {nounwords}=require('./data/noun_words.json');
 
 client.commands = new Collection();
-client.datamap = new Map(Object.entries(nounwords));;
-client.nounwordsmap = new Map(Object.entries(data));
+client.datamap = new Map(Object.entries(data));
+client.nounwordsmap = new Map(Object.entries(nounwords));
 
 const functions = fs.readdirSync("./src/functions").filter(file => file.endsWith(".js"));
 const eventFiles = fs.readdirSync("./src/events").filter(file => file.endsWith(".js"));
