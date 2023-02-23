@@ -32,9 +32,12 @@ module.exports = {
         /*                stream: false,*/
         try {
             const response = await openai.createCompletion({
-                model: "babbage:ft-personal-2023-02-23-07-22-38",
+                model: "babbage:ft-personal-2023-02-23-08-00-53",
                 prompt: tryMessage,
-                max_tokens: 1024,
+                max_tokens: 512,
+                top_p: 1,
+                frequency_penalty: 0,
+                presence_penalty: 0,
                 temperature: 0,
                 stop:'END',
             })
@@ -42,7 +45,7 @@ module.exports = {
                 .setColor(2895667)
                 .setTimestamp()
                 .setAuthor({ name: 'seeDaoAi'})
-                .setDescription('问题:'+message+response.data.choices[0].text)
+                .setDescription('问题:'+message+'/n'+response.data.choices[0].text)
             await interaction.editReply({
                 embeds: [embed]
             });
