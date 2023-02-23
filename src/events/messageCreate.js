@@ -36,7 +36,7 @@ module.exports = {
             //need to answer directly
             await message.reply(`谢谢@我: ${message.author.username}`);
         }
-        content = content.replace(/\s*/g,"");
+        //content = content.replace(/\s*/g,"");
         if(!isQuestion(content)){
             return;
         }
