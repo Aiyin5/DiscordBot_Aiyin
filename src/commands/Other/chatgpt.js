@@ -34,11 +34,10 @@ module.exports = {
             const response = await openai.createCompletion({
                 model: "babbage:ft-personal-2023-02-22-05-51-11",
                 prompt: tryMessage,
-                max_tokens: 2048,
+                max_tokens: 1024,
                 temperature: 0,
-                stop:'END'
+                stop:'END',
             })
-
             const embed = new EmbedBuilder()
                 .setColor(2895667)
                 .setTimestamp()
