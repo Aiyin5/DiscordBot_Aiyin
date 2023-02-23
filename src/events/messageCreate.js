@@ -44,7 +44,6 @@ module.exports = {
             for (let i in nounwordsMap.keys()) {
                 if(content.indexOf(i)!=-1){
                     await message.reply({content:nounwordsMap.get(i)});
-                    return;
                 }
             }
         }
