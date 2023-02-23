@@ -29,8 +29,15 @@ module.exports = {
         }
         let content=message.content.toLowerCase();
         if(content.includes('<@1075663991554191370>')){
-            //need to answer directly
             await message.reply(`谢谢@我: ${message.author.username}`);
+            if(content.includes("什么")||content.includes("链接")){
+                for (let i of client.nounwordsmap.keys()) {
+                    if(content.includes(i)){
+                        await message.reply(client.nounwordsmap.get(i));
+                        break;
+                    }
+                }
+            }
         }
         content = content.replace(/\s*/g,"");
         if(!isQuestion(content)){
