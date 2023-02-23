@@ -35,7 +35,7 @@ module.exports = {
                 prompt: message,
                 max_tokens: 2048,
                 temperature: 0,
-                stop:'END',
+                stop:'END'
             })
 
             const embed = new EmbedBuilder()
@@ -49,7 +49,7 @@ module.exports = {
         } catch (error) {
             console.log(error)
             return await interaction.editReply({
-                content: 'An error occurred while trying to send the message to GPT-3',
+                content: 'An error occurred while trying to send the message to seeDaoAi',
                 ephemeral: true
             });
         }
