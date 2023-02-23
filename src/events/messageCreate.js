@@ -36,13 +36,11 @@ module.exports = {
         if(!isQuestion(content)){
             return;
         }
-        console.log(content);
-        console.log(client.nounwordsmap.keys());
         if(content.includes("什么")||content.includes("链接")){
             for (let i in client.nounwordsmap.keys()) {
                 if(content.includes(i)){
+                    console.log("find--------------------")
                     await message.reply(client.nounwordsmap.get(i));
-                    break;
                 }
             }
         }
