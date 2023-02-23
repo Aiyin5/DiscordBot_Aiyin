@@ -45,7 +45,8 @@ module.exports = {
                 .setColor(2895667)
                 .setTimestamp()
                 .setAuthor({ name: 'seeDaoAi'})
-                .setDescription('问题:'+message+'/n'+response.data.choices[0].text)
+                .setDescription(`\`\`\`${response.data.choices[0].text}\`\`\``)
+            await interaction.reply('问题：'+message);
             await interaction.editReply({
                 embeds: [embed]
             });
