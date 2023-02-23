@@ -41,7 +41,7 @@ module.exports = {
             return;
         }
         if(content.indexOf("什么")!=-1){
-            let key = nounwordsMap.keySet();
+            let key = nounwordsMap.keys();
             for (let i in key) {
                 if(content.indexOf("i")!=-1){
                     await message.reply({content:nounwordsMap.get(i)});
