@@ -9,9 +9,7 @@ const configuration = new Configuration({
 });
 const openai = new OpenAIApi(configuration);
 
-
-module.exports =(message,content)=> {
-    seeDaoAi= async (message,content)=> {
+module.exports =async (message,content)=> {
         const tryMessage=content+' ->';
         try {
             const response = await openai.createCompletion({
@@ -39,5 +37,4 @@ module.exports =(message,content)=> {
                 ephemeral: true
             });
         }
-    }
 }
