@@ -3,7 +3,6 @@ const {
     Configuration
 } = require("openai");
 const { chatApiKey } = require('../../../config.json');
-const {SlashCommandBuilder, EmbedBuilder} = require("discord.js");
 const configuration = new Configuration({
     apiKey: chatApiKey
 });
@@ -32,7 +31,7 @@ module.exports =async (message,content)=> {
             await message.reply(response.data.choices[0]);
         } catch (error) {
             console.log(error)
-            return await message.editReply({
+            return await message.reply({
                 content: 'An error occurred while trying to send the message to seeDaoAi',
                 ephemeral: true
             });

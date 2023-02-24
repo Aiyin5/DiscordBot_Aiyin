@@ -14,7 +14,11 @@ function isQuestion(content) {
 }
 
 function queueMap(content){
-    //confirm fist
+    for (let i of client.nounwordsmap.keys()) {
+        if(content.includes(i)){
+            return true;
+        }
+    }
 
 }
 
@@ -43,11 +47,12 @@ module.exports = {
         if(!isQuestion(content)){
             return;
         }
-        if(content.includes("什么")||content.includes("链接")){
+        //前置判断
+        if(content.includes("什么")){
             for (let i of client.nounwordsmap.keys()) {
                 if(content.includes(i)){
                     await message.reply(client.nounwordsmap.get(i));
-                    break;
+                    return;
                 }
             }
         }
@@ -55,6 +60,10 @@ module.exports = {
 
         }
         else {
+            //
+        }
+        //非标判断
+        if (queueMap(content)){
             await seeDaoAi(message,content);
         }
     },
