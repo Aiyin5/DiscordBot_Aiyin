@@ -2,6 +2,9 @@ const {
     OpenAIApi,
     Configuration
 } = require("openai");
+const {
+    EmbedBuilder
+} = require('discord.js');
 const { chatApiKey } = require('../../../config.json');
 const configuration = new Configuration({
     apiKey: chatApiKey
@@ -20,11 +23,11 @@ module.exports =async (message,content)=> {
                 temperature: 0,
                 stop:'END',
             })
-            const embed = new EmbedBuilder()
+/*            const embed = new EmbedBuilder()
                 .setColor(2895667)
                 .setTimestamp()
                 .setTitle(content)
-                .setDescription(`\`\`\`${response.data.choices[0].text}\`\`\``);
+                .setDescription(`\`\`\`${response.data.choices[0].text}\`\`\``);*/
             /*await message.editReply({
                 embeds: [embed]
             });*/
