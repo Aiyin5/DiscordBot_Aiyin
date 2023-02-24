@@ -32,9 +32,8 @@ module.exports =async (message,content)=> {
             /*await message.editReply({
                 embeds: [embed]
             });*/
-            const replydata=await response.data;
             await message.reply("调用seedaoAi");
-            await message.reply(replydata);
+            await message.reply(response.data.choices[0].text);
         } catch (error) {
             console.log(error)
             return await message.reply({
