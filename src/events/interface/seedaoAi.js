@@ -32,8 +32,9 @@ module.exports =async (message,content)=> {
             /*await message.editReply({
                 embeds: [embed]
             });*/
-            console.log(response.data.choices[0]);
-            await message.reply(response.data.choices[0]);
+            console.log(message);
+            const replydata=response.data.choices[0];
+            await message.reply(replydata);
         } catch (error) {
             console.log(error)
             return await message.reply({
