@@ -13,7 +13,7 @@ function isQuestion(content) {
     }
 }
 
-function queueMap(content){
+function queueMap(content,client){
     for (let i of client.nounwordsmap.keys()) {
         if(content.includes(i)){
             return true;
@@ -63,7 +63,7 @@ module.exports = {
             //
         }
         //非标判断
-        if (queueMap(content)){
+        if (queueMap(content,client)){
             await seeDaoAi(message,content);
         }
     },
