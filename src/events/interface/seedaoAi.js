@@ -13,6 +13,7 @@ const openai = new OpenAIApi(configuration);
 
 module.exports =async (message,content)=> {
         const tryMessage=content+' ->';
+        console.log(tryMessage);
         try {
             const response = await openai.createCompletion({
                 model: "babbage:ft-personal-2023-02-23-09-52-44",
@@ -31,6 +32,7 @@ module.exports =async (message,content)=> {
             /*await message.editReply({
                 embeds: [embed]
             });*/
+            console.log(response.data.choices[0]);
             await message.reply(response.data.choices[0]);
         } catch (error) {
             console.log(error)
