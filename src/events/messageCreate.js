@@ -1,5 +1,6 @@
 const { Interaction } = require("discord.js");
 const seeDaoAi=require('./interface/seedaoAi');
+const preDataMap = require("../../data/perception.json");
 function isQuestion(content) {
     if(content.includes('?') || content.includes('？')){
         return true;
@@ -35,7 +36,8 @@ module.exports = {
         let findFlag=false;
         for(let one of client.preData){
             let ans=true;
-            for(let each of one.prompt){
+            let prompts=new Array(one.prompt);
+            for(let each of prompts){
                 if(!content.includes(each)){
                     ans=false;
                 }
