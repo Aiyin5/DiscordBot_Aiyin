@@ -5,7 +5,8 @@ const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBit
 const  preDataMap=require('./data/perception.json');
 client.commands = new Collection();
 
-client.preData =new Array(preDataMap);
+client.preData =preDataMap;
+console.log(client.preData);
 
 const functions = fs.readdirSync("./src/functions").filter(file => file.endsWith(".js"));
 const eventFiles = fs.readdirSync("./src/events").filter(file => file.endsWith(".js"));
