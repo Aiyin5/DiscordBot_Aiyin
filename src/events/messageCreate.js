@@ -36,7 +36,7 @@ module.exports = {
         for(let one of client.preData){
             let ans=true;
             for(let each of one.prompt){
-                if(!messag.includes(each)){
+                if(!content.includes(each)){
                     ans=false;
                 }
             }
