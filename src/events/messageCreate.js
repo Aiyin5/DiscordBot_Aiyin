@@ -13,14 +13,6 @@ function isQuestion(content) {
     }
 }
 
-function queueMap(content,client){
-    for (let i of client.nounwordsmap.keys()) {
-        if(content.includes(i)){
-            return true;
-        }
-    }
-
-}
 
 module.exports = {
     name: 'messageCreate',
@@ -34,36 +26,28 @@ module.exports = {
         let content=message.content.toLowerCase();
         if(content.includes('<@1075663991554191370>')){
             await message.reply(`谢谢@我: ${message.author.username}`);
-            if(content.includes("链接")){
-                for (let i of client.nounwordsmap.keys()) {
-                    if(content.includes(i)){
-                        await message.reply(client.nounwordsmap.get(i));
-                        break;
-                    }
-                }
-            }
         }
         content = content.replace(/\s*/g,"");
         if(!isQuestion(content)){
             return;
         }
         //前置判断
-        if(content.includes("什么")){
-            for (let i of client.nounwordsmap.keys()) {
-                if(content.includes(i)){
-                    await message.reply(client.nounwordsmap.get(i));
-                    return;
+        let findFlag=false;
+        for(let one of client.preData){
+            let ans=true;
+            for(let each of one.prompt){
+                if(!messag.includes(each)){
+                    ans=false;
                 }
             }
+            if(ans){
+                findFlag=true;
+                await message.reply(one.completion);
+                break;
+            }
         }
-        else if(content.includes("如何")||content.includes("怎么")){
-
-        }
-        else {
-            //
-        }
-        //非标判断
-        if (queueMap(content,client)){
+        //非标判断,没有找到答案
+        if (!findFlag){
             await seeDaoAi(message,content);
         }
     },
