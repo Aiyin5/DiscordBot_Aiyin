@@ -29,7 +29,7 @@ http.createServer((req, res) => {
     if (req.method === 'POST') {
         let body = '';
         req.on('data', (data) => {
-            body += data;
+            console.log("接收到Post的请求");
         });
         req.on('end', () => {
             res.writeHead(200, { 'Content-Type': 'text/plain' });
@@ -49,7 +49,7 @@ http.createServer((req, res) => {
         res.end();
     }
 }).listen(3001, () => {
-    console.log('Node.js 服务已启动，正在监听 3001 端口');
+    console.log('Node.js 服务已启动，正在监听 2998 端口');
 });
 
 //data_check_console
