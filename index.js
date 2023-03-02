@@ -6,7 +6,7 @@ const  preDataMap=require('./data/perception.json');
 client.commands = new Collection();
 
 client.preData =preDataMap;
-
+const url = require('url');
 
 const functions = fs.readdirSync("./src/functions").filter(file => file.endsWith(".js"));
 const eventFiles = fs.readdirSync("./src/events").filter(file => file.endsWith(".js"));
@@ -16,7 +16,7 @@ const { token } = require('./config.json');
 const http = require('http');
 const axios = require('axios');
 
-axios.get('http://43.153.209.106:3000')
+axios.get('http://43.153.209.106:3000/api/read')
     .then(response => {
         client.preData =JSON.parse(response.data);
     })
@@ -26,7 +26,8 @@ axios.get('http://43.153.209.106:3000')
 // 创建 HTTP 服务端
 http.createServer((req, res) => {
     // 监听 POST 请求
-    if (req.method === 'POST') {
+    const { pathname } = url.parse(req.url, true);
+    if (req.method === 'POST' && pathname === '/update' ) {
         let body = '';
         req.on('data', (data) => {
             console.log("接收到Post的请求");
@@ -35,7 +36,7 @@ http.createServer((req, res) => {
             res.writeHead(200, { 'Content-Type': 'text/plain' });
             res.write('POST 请求已收到\n');
             res.end();
-            axios.get('http://43.153.209.106:3000')
+            axios.get('http://43.153.209.106:3000/api/read')
                 .then(response => {
                     client.preData =JSON.parse(response.data);
                 })
