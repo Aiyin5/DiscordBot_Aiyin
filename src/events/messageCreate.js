@@ -37,17 +37,18 @@ module.exports = {
         for(let one of client.preData){
             let ans=true;
             let prompts=one.prompt;
-            try {
+            if(!prompts.includes(',')){
+                if(!content.includes(prompts)){
+                    ans=false;
+                }
+            }
+            else {
                 for(let each of prompts){
                     if(!content.includes(each)){
                         ans=false;
                     }
                 }
             }
-            catch (e){
-                console.log(e);
-            }
-
             if(ans){
                 findFlag=true;
                 await message.reply(one.completion);
