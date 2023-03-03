@@ -13,12 +13,17 @@ const cosItem = new cosInstance(SecretId,SecretKey);
 const server =require("./src/server/server");
 const { join } =require ('path');
 const path = join(__dirname,'perceptConfig.json');
+const { ChatBot, loadEdgeGPTConfig  } = require('edgegpt');
 
 const functions = fs.readdirSync("./src/functions").filter(file => file.endsWith(".js"));
 const eventFiles = fs.readdirSync("./src/events").filter(file => file.endsWith(".js"));
 const commandFolders = fs.readdirSync("./src/commands");
 
 (async () => {
+    await cosItem.getCookie();
+    const config = await loadEdgeGPTConfig();
+    const chatBot = new ChatBot(config);
+    await chatBot.create();
     console.log(await cosItem.getItem(path));
     client.preData=require('./perceptConfig.json');
     server(client,cosItem,path);
@@ -26,7 +31,7 @@ const commandFolders = fs.readdirSync("./src/commands");
     for (file of functions) {
         require(`./src/functions/${file}`)(client);
     }
-    client.handleEvents(eventFiles, "./src/events");
+    client.handleEvents(eventFiles, "./src/events",chatBot);
     client.handleCommands(commandFolders, "./src/commands");
     client.login(token);
 })();

@@ -22,6 +22,19 @@ class cosInstance {
             console.log(err);
         }
     }
+    async getCookie(){
+        try {
+            let data = await this.CosItem.getObject({
+                Bucket: 'config-1256742492', /* 必须 */
+                Region: 'ap-singapore',    /* 必须 */
+                Key: 'cookie.json',              /* 必须 */
+                Output: fs.createWriteStream('./cookie.json'),
+            });
+            return data;
+        } catch (err) {
+            console.log(err);
+        }
+    }
     async upload (path){
         try {
             let data = await this.CosItem.putObject({

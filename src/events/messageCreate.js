@@ -1,5 +1,5 @@
 
-const seeDaoAi=require('./interface/seedaoAi');
+const bingNew=require('./interface/bingNew');
 
 function isQuestion(content) {
     if(content.includes('?') || content.includes('？')){
@@ -17,7 +17,7 @@ function isQuestion(content) {
 
 module.exports = {
     name: 'messageCreate',
-    async execute(message, client) {
+    async execute(message, client,chatBot) {
         console.log(message);
         //如果消息的发起者是机器人，就不理会
         let author=message.author;
@@ -57,7 +57,7 @@ module.exports = {
         }
         //非标判断,没有找到答案
         if (!findFlag){
-            await seeDaoAi(message,content);
+            await bingNew(chatBot,message,content);
         }
     },
 };
