@@ -37,7 +37,6 @@ module.exports = {
         for(let one of client.preData){
             let ans=true;
             let prompts=one.prompt;
-            console.log(prompts);
             if(prompts===undefined){
                 continue;
             }

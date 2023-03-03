@@ -26,7 +26,7 @@ function serverStart(client,cosItem,path){
                         }else{
                             console.log('文件写入成功');
                             cosItem.uploadwait(path);
-                            client.preData=data.data;
+                            client.preData=require(path);
                             console.log(client.preData);
                             res.end('更新成功');
                         }
