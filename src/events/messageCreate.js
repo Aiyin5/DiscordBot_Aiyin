@@ -37,6 +37,9 @@ module.exports = {
         for(let one of client.preData){
             let ans=true;
             let prompts=one.prompt;
+            if(!Array.isArray(prompts)){
+                continue;
+            }
             for(let each of prompts){
                 if(!content.includes(each)){
                     ans=false;
