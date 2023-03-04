@@ -1,5 +1,6 @@
 
 const bingNew=require('./interface/bingNew');
+const instance = require("../util/caInstance");
 
 function isQuestion(content) {
     if(content.includes('?') || content.includes('？')){
@@ -18,7 +19,6 @@ function isQuestion(content) {
 module.exports = {
     name: 'messageCreate',
     async execute(message, client,chatBot) {
-        console.log(message);
         //如果消息的发起者是机器人，就不理会
         let author=message.author;
         if(author.id.includes('1075663991554191370')){
@@ -34,7 +34,8 @@ module.exports = {
         }
         //前置判断
         let findFlag=false;
-        for(let one of client.preData){
+        let preData = instance.getArray();
+        for(let one of preData){
             let ans=true;
             let prompts=one.prompt;
             if(prompts===undefined){

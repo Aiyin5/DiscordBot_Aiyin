@@ -1,6 +1,7 @@
 const http = require('http');
 const url = require( "url");
 const fs = require("fs");
+const instance = require("../util/caInstance");
 
 function serverStart(client,cosItem,path){
     http.createServer((req, res) => {
@@ -26,8 +27,11 @@ function serverStart(client,cosItem,path){
                         }else{
                             console.log('文件写入成功');
                             cosItem.uploadwait(path);
-                            client.preData=JSON.parse(format);
-                            console.log(client.preData);
+                            let preData=JSON.parse(format);
+                            instance.cleanItem();
+                            for(let item of preData){
+                                instance.addItem(item);
+                            }
                             res.end('更新成功');
                         }
                     })

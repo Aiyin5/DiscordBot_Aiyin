@@ -4,9 +4,8 @@ const fs = require('fs');
 const url = require('url');
 const { token,SecretId,SecretKey } = require('./config.json');
 const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.MessageContent,GatewayIntentBits.GuildMembers,GatewayIntentBits.DirectMessages] });
-const  preDataMap=require('./data/perception.json');
 client.commands = new Collection();
-client.preData =preDataMap;
+const instance = require('./singleton');
 
 const cosInstance =require("./cosFuntion.js");
 const cosItem = new cosInstance(SecretId,SecretKey);
@@ -25,9 +24,12 @@ const commandFolders = fs.readdirSync("./src/commands");
     const chatBot = new ChatBot(config);
     await chatBot.create();
     console.log(await cosItem.getItem(path));
-    client.preData=require('./perceptConfig.json');
+    let preData=require('./perceptConfig.json');
+    instance.cleanItem();
+    for(let item of preData){
+        instance.addItem(item);
+    }
     server(client,cosItem,path);
-    //console.log(client.nounwordsmap.keys());
     for (file of functions) {
         require(`./src/functions/${file}`)(client);
     }
