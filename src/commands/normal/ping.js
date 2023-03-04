@@ -1,12 +1,15 @@
 const { SlashCommandBuilder } = require('discord.js');
-const instacnce = require('../../util/caInstance')
+const instance = require('../../util/caInstance')
 
 module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('getping')
 		.setDescription('获取当前的前置拦截!'),
 	async execute(interaction) {
-		let arr=instacnce.getArray();
+		let arr=instance.getArray();
+		if(arr.length==0){
+			return interaction.reply("没有前置拦截");
+		}
 		return interaction.reply(arr);
 	},
 };
