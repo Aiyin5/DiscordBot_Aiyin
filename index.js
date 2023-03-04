@@ -5,7 +5,7 @@ const url = require('url');
 const { token,SecretId,SecretKey } = require('./config.json');
 const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.MessageContent,GatewayIntentBits.GuildMembers,GatewayIntentBits.DirectMessages] });
 client.commands = new Collection();
-const instance = require('./singleton');
+const instance = require('./src/util/caInstance');
 
 const cosInstance =require("./cosFuntion.js");
 const cosItem = new cosInstance(SecretId,SecretKey);
