@@ -11,8 +11,10 @@ module.exports = {
 			return interaction.reply("没有前置拦截");
 		}
 		else {
-			let str=arr.toString();
-			str="当前的前置拦截："+str;
+			let str="当前的前置拦截：";
+			for(let item of arr){
+				str+=JSON.stringify(item);
+			}
 			return interaction.reply(str);
 		}
 
