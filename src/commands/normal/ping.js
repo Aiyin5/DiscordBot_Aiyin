@@ -11,7 +11,9 @@ module.exports = {
 			return interaction.reply("没有前置拦截");
 		}
 		else {
-			return interaction.reply("有前置拦截");
+			let str=arr.toString();
+			str="当前的前置拦截："+str;
+			return interaction.reply(str);
 		}
 
 	},
