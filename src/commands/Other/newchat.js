@@ -21,7 +21,7 @@ module.exports = {
                 .setColor(2895667)
                 .setTimestamp()
                 .setTitle(message)
-                .setDescription(`\`\`\`${response.data.choices[0].message}\`\`\``);
+                .setDescription(`\`\`\`${response.data.choices[0].message.content}\`\`\``);
             await interaction.editReply({
                 embeds: [embed]
             });
