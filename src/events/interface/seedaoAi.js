@@ -1,15 +1,7 @@
 const {
-    OpenAIApi,
-    Configuration
-} = require("openai");
-const {
     EmbedBuilder
 } = require('discord.js');
-const { chatApiKey } = require('../../../config.json');
-const configuration = new Configuration({
-    apiKey: chatApiKey
-});
-const openai = new OpenAIApi(configuration);
+const openai = require('../../util/chatBot')
 
 module.exports =async (message,content)=> {
         const tryMessage=content+' ->';

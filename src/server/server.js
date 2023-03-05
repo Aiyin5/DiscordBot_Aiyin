@@ -2,6 +2,7 @@ const http = require('http');
 const url = require( "url");
 const fs = require("fs");
 const instance = require("../util/caInstance");
+const openai = require('../util/chatBot')
 
 function serverStart(client,cosItem,path){
     http.createServer((req, res) => {
@@ -13,7 +14,7 @@ function serverStart(client,cosItem,path){
                 body += data;
                 console.log("接收到Post的请求");
             });
-            req.on('end',  () => {
+            req.on('end',   () => {
                 try{
                     let data = JSON.parse(body); // 将字符串解析为 JSON 对象
                     let str=data.data;
@@ -35,6 +36,7 @@ function serverStart(client,cosItem,path){
                             res.end('更新成功');
                         }
                     })
+
 
                 }
                 catch (error) {
@@ -64,6 +66,29 @@ function serverStart(client,cosItem,path){
                 }
                 catch (err){
                     console.log(err);
+                }
+            });
+        }
+        else if (req.method === 'POST' && pathname === '/question' ) {
+            let body = '';
+            req.on('data', (data) => {
+                body += data;
+                console.log("接收到Post的请求");
+            });
+            req.on('end',   async () => {
+                try{
+                    let data = JSON.parse(body); // 将字符串解析为 JSON 对象
+                    let message=data.message;
+                    const completion = await openai.createChatCompletion({
+                        model: "gpt-3.5-turbo",
+                        messages: [{role: "user", content: message}],
+                    });
+                    res.end(completion.data.choices[0].text);
+                }
+                catch (error) {
+                    console.error(`解析请求体为 JSON 对象出错：${error.message}`);
+                    res.statusCode = 400;
+                    res.end('请求体解析错误');
                 }
             });
         }

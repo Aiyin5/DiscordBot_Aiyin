@@ -2,17 +2,7 @@ const {
     SlashCommandBuilder,
     EmbedBuilder
 } = require('discord.js');
-const {
-    OpenAIApi,
-    Configuration
-} = require("openai");
-const { chatApiKey } = require('../../../config.json');
-const configuration = new Configuration({
-    apiKey: chatApiKey
-});
-
-const openai = new OpenAIApi(configuration);
-
+const openai = require('../../util/chatBot')
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -21,15 +11,8 @@ module.exports = {
         .addStringOption(option => option.setName('message').setDescription('The message to send to seeDaoAi').setRequired(true)),
     async execute(interaction) {
         await interaction.deferReply();
-
         const message = interaction.options.getString('message');
         const tryMessage=message+' ->';
-        /*               top_p: 1,
-                       presence_penalty: 0.5,
-                       frequency_penalty: 0.5,
-                       best_of: 1,
-                       n: 1,*/
-        /*                stream: false,*/
         try {
             const response = await openai.createCompletion({
                 model: "babbage:ft-personal-2023-02-23-09-52-44",

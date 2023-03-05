@@ -19,10 +19,10 @@ const eventFiles = fs.readdirSync("./src/events").filter(file => file.endsWith("
 const commandFolders = fs.readdirSync("./src/commands");
 
 (async () => {
-    await cosItem.getCookie();
+/*    await cosItem.getCookie();
     const config = await loadEdgeGPTConfig();
     const chatBot = new ChatBot(config);
-    await chatBot.create();
+    await chatBot.create();*/
     console.log(await cosItem.getItem(path));
     let preData=require('./perceptConfig.json');
     instance.cleanItem();
@@ -33,6 +33,7 @@ const commandFolders = fs.readdirSync("./src/commands");
     for (file of functions) {
         require(`./src/functions/${file}`)(client);
     }
+    let chatBot={};
     client.handleEvents(eventFiles, "./src/events",chatBot);
     client.handleCommands(commandFolders, "./src/commands");
     client.login(token);
