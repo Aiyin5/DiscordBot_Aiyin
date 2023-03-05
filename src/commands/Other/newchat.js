@@ -15,6 +15,7 @@ module.exports = {
         try {
             const response = await openai.createChatCompletion({
                 model: "gpt-3.5-turbo",
+                temperature: 0,
                 messages: [{role: "user", content: message}],
             });
             const embed = new EmbedBuilder()
