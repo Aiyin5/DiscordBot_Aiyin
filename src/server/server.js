@@ -83,7 +83,7 @@ function serverStart(client,cosItem,path){
                         model: "gpt-3.5-turbo",
                         messages: [{role: "user", content: message}],
                     });
-                    res.end(completion.data.choices[0].text);
+                    res.end(completion.data.choices[0].message);
                 }
                 catch (error) {
                     console.error(`解析请求体为 JSON 对象出错：${error.message}`);
