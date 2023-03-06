@@ -3,6 +3,7 @@ const url = require( "url");
 const fs = require("fs");
 const instance = require("../util/caInstance");
 const openai = require('../util/chatBot')
+const axios = require("axios");
 
 function serverStart(client,cosItem,path){
     http.createServer((req, res) => {
@@ -15,35 +16,27 @@ function serverStart(client,cosItem,path){
                 console.log("接收到Post的请求");
             });
             req.on('end',   () => {
-                try{
-                    let data = JSON.parse(body); // 将字符串解析为 JSON 对象
-                    let str=data.data;
-                    str=str.toString();
-                    let format="["
-                    format=format+str+']';
-                    fs.writeFile(path,format,err=>{
-                        if(err){
-                            console.log('写入出错了');
-                            res.end('更新失败');
-                        }else{
-                            console.log('文件写入成功');
-                            cosItem.uploadwait(path);
-                            let preData=JSON.parse(format);
-                            instance.cleanItem();
-                            for(let item of preData){
-                                instance.addItem(item);
-                            }
-                            res.end('更新成功');
-                        }
-                    })
-
-
-                }
-                catch (error) {
-                    console.error(`解析请求体为 JSON 对象出错：${error.message}`);
-                    res.statusCode = 400;
-                    res.end('请求体解析错误');
-                }
+                let preData;
+                axios.get('http://www.free-be.xyz:3000/data').
+                then(response => {
+                    preData=response.data;
+                    // 处理响应
+                    instance.cleanItem();
+                    for(let item of preData){
+                        let prompt=item.prompt.toString();
+                        prompt=prompt.replace(/\s*/g,"");
+                        prompt=prompt.toLowerCase();
+                        prompt=prompt.split(",");
+                        let completion=item.completion;
+                        instance.addItem({
+                            "prompt":prompt,
+                            "completion":completion
+                        });
+                    }
+                }).catch(error => {
+                    console.log(error);
+                    // 处理错误
+                });
             });
         }
         else if (req.method === 'GET' && pathname === '/jsonfile' ) {
@@ -84,7 +77,7 @@ function serverStart(client,cosItem,path){
                         temperature: 0,
                         messages: [{role: "user", content: message}],
                     });
-                    res.end(completion.data.choices[0].message.content);
+                    res.end(JSON.stringify(completion.data.choices[0].message.content));
                 }
                 catch (error) {
                     console.error(`解析请求体为 JSON 对象出错：${error.message}`);
