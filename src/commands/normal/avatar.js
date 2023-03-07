@@ -1,4 +1,4 @@
-const { SlashCommandBuilder } = require('discord.js');
+const { SlashCommandBuilder, EmbedBuilder} = require('discord.js');
 const openai = require('../../util/chatBot')
 module.exports = {
 	data: new SlashCommandBuilder()
@@ -16,10 +16,14 @@ module.exports = {
 				n: 1,
 				size: "256x256",
 			});
-			console.log(response.data);
-			console.log(response.data.data);
-			await interaction.reply(response.data.data[0].url);
-
+			const embed = new EmbedBuilder()
+				.setColor(2895667)
+				.setTimestamp()
+				.setTitle("avatar")
+				.setDescription(`\`\`\`${response.data.data[0].url}\`\`\``);
+			await interaction.editReply({
+				embeds: [embed]
+			});
 		}
 		catch (err){
 			return interaction.reply(err);
