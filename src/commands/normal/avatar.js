@@ -8,7 +8,6 @@ module.exports = {
 	async execute(interaction) {
 
 		const str = interaction.options.getString('description');
-		console.log(str);
 		let prt="create an avatar which is "+str;
 		try {
 			const response = await openai.createImage({
@@ -16,17 +15,18 @@ module.exports = {
 				n: 1,
 				size: "256x256",
 			});
+			console.log(response.data.data[0].toString());
 			const embed = new EmbedBuilder()
 				.setColor(2895667)
 				.setTimestamp()
 				.setTitle("avatar")
-				.setDescription(`\`\`\`${response.data.data[0].url}\`\`\``);
+				.setDescription(`\`\`\`${response.data.data[0].url.toString()}\`\`\``);
 			await interaction.editReply({
 				embeds: [embed]
 			});
 		}
 		catch (err){
-			return interaction.reply(err);
+			return interaction.reply("err");
 		}
 	},
 };
