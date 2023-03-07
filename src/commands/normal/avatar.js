@@ -6,7 +6,7 @@ module.exports = {
 		.setDescription('Get your own avatar.')
 		.addStringOption(option => option.setName('description').setDescription('use words to descripe your avatar')),
 	async execute(interaction) {
-		const str = interaction.options.getString('Description');
+		const str = interaction.options.getString('description');
 		let prt="create an avatar which is "+str;
 		try {
 			const response = await openai.createImage({
