@@ -33,33 +33,12 @@ function serverStart(client,cosItem,path){
                             "completion":completion
                         });
                     }
+                    res.end("更新完成");
                 }).catch(error => {
                     console.log(error);
-                    // 处理错误
+                    res.statusCode = 400;
+                    res.end("更新失败");
                 });
-            });
-        }
-        else if (req.method === 'GET' && pathname === '/jsonfile' ) {
-            let body = '';
-            req.on('data', (data) => {
-                console.log("接收到GET的请求");
-            });
-            req.on('end', () => {
-                try{
-                    fs.readFile(path,'utf8',(err,dataStr)=>{
-                        if(err){
-                            console.log(err);
-                        }else{
-                            console.log(dataStr);
-                            console.log('文件读取成功');
-                            res.writeHead(200, { 'Content-Type': 'application/json' });
-                            res.end(JSON.stringify(dataStr));
-                        }
-                    })
-                }
-                catch (err){
-                    console.log(err);
-                }
             });
         }
         else if (req.method === 'POST' && pathname === '/question' ) {
