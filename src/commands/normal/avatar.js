@@ -16,13 +16,10 @@ module.exports = {
 				n: 1,
 				size: "256x256",
 			});
-			console.log(response);
-			try{
-				await interaction.reply(response.data.data[0].url);
-			}
-			catch (err){
-				interaction.reply(err);
-			}
+			console.log(response.data);
+			console.log(response.data.data);
+			await interaction.reply(response.data.data[0].url);
+
 		}
 		catch (err){
 			return interaction.reply(err);
