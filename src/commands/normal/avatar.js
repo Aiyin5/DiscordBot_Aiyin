@@ -15,18 +15,24 @@ module.exports = {
 				n: 1,
 				size: "256x256",
 			});
-			console.log(response.data.data[0].toString());
+			console.log(response.data.data)
+			console.log(response.data.data[0].url);
+			let test="test222";
 			const embed = new EmbedBuilder()
 				.setColor(2895667)
 				.setTimestamp()
 				.setTitle("avatar")
-				.setDescription(`\`\`\`${response.data.data[0].toString()}\`\`\``);
+				.setDescription(`\`\`\`${test}\`\`\``);
 			await interaction.editReply({
 				embeds: [embed]
 			});
 		}
-		catch (err){
-			return interaction.reply("err");
+		catch (error){
+			console.log(error)
+			return await interaction.editReply({
+				content: 'An error occurred while trying to send the message to seeDaoAi',
+				ephemeral: true
+			});
 		}
 	},
 };
