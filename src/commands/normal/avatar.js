@@ -14,7 +14,7 @@ module.exports = {
 				n: 1,
 				size: "256x256",
 			});
-			return interaction.reply(response.data[0].url);
+			await interaction.reply(response.data[0].url);
 		}
 		catch (err){
 			return interaction.reply(err);
