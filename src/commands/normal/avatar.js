@@ -19,7 +19,8 @@ module.exports = {
 				.setColor(2895667)
 				.setTimestamp()
 				.setTitle("avatar")
-				.setDescription(`\`\`\`${response.data.data[0].url}\`\`\``);
+				.setImage(response.data.data[0].url)
+				.setDescription('your avatar');
 			await interaction.editReply({
 				embeds: [embed]
 			});
