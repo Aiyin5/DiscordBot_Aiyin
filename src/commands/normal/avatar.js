@@ -3,8 +3,8 @@ const openai = require('../../util/chatBot')
 module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('获取头像')
-		.setDescription('Get the avatar URL of the selected user, or your own avatar.')
-		.addStringOption(option => option.setName('Description').setDescription('描述一下你希望的头像样子')),
+		.setDescription('Get your own avatar.')
+		.addStringOption(option => option.setName('description').setDescription('use words to descripe your avatar')),
 	async execute(interaction) {
 		const str = interaction.options.getString('Description');
 		let prt="create an avatar which is "+str;
