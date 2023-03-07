@@ -17,7 +17,7 @@ module.exports = {
 				size: "256x256",
 			});
 			console.log(response);
-			await interaction.reply(response.data[0].url);
+			await interaction.reply(response.data.data[0].url);
 		}
 		catch (err){
 			return interaction.reply(err);
