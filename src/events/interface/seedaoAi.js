@@ -4,7 +4,7 @@ const {
 const openai = require('../../util/chatBot')
 
 module.exports =async (message,content,otherMess)=> {
-        const tryMessage="请根据一下内容回答这个问题："+content+"。/n"+otherMess;
+        const tryMessage="请根据以下的内容回答这个问题："+content+"。/n"+otherMess;
         console.log(tryMessage);
         try {
             const response = await openai.createChatCompletion({
