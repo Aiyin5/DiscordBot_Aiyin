@@ -3,29 +3,17 @@ const {
 } = require('discord.js');
 const openai = require('../../util/chatBot')
 
-module.exports =async (message,content)=> {
-        const tryMessage=content+' ->';
+module.exports =async (message,content,otherMess)=> {
+        const tryMessage="请根据一下内容回答这个问题："+content+"。/n"+otherMess;
         console.log(tryMessage);
         try {
-            const response = await openai.createCompletion({
-                model: "babbage:ft-personal-2023-02-23-09-52-44",
-                prompt: tryMessage,
-                max_tokens: 512,
-                frequency_penalty: 0,
-                presence_penalty: 0,
+            const response = await openai.createChatCompletion({
+                model: "gpt-3.5-turbo",
                 temperature: 0,
-                stop:'END',
-            })
-/*            const embed = new EmbedBuilder()
-                .setColor(2895667)
-                .setTimestamp()
-                .setTitle(content)
-                .setDescription(`\`\`\`${response.data.choices[0].text}\`\`\``);*/
-            /*await message.editReply({
-                embeds: [embed]
-            });*/
+                messages: [{role: "user", content: tryMessage}],
+            });
             await message.reply("调用seedaoAi");
-            await message.reply(response.data.choices[0].text);
+            await message.reply(response.data.choices[0].message.content);
         } catch (error) {
             console.log(error)
             return await message.reply({
