@@ -41,16 +41,9 @@ module.exports = {
             if(prompts===undefined){
                 continue;
             }
-            if(!prompts.includes(',')){
-                if(!content.includes(prompts)){
+            for(let each of prompts){
+                if(!content.includes(each)){
                     ans=false;
-                }
-            }
-            else {
-                for(let each of prompts){
-                    if(!content.includes(each)){
-                        ans=false;
-                    }
                 }
             }
             if(ans){
