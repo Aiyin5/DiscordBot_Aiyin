@@ -2,7 +2,7 @@ const { Interaction } = require("discord.js");
 
 module.exports = {
     name: 'interactionCreate',
-    async execute(interaction, client,chatBot) {
+    async execute(interaction, client) {
         if (!interaction.isCommand()) return;
 
         const command = client.commands.get(interaction.commandName);

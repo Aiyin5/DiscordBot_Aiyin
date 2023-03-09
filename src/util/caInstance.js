@@ -3,12 +3,19 @@ class Singleton {
         if (!Singleton.instance) {
             Singleton.instance = this;
             this.array = [];
+            this.unPrearray = [];
         }
         return Singleton.instance;
     }
 
     getArray() {
         return this.array;
+    }
+    getUnPreArray() {
+        return this.unPrearray;
+    }
+    addUnPreItem(item) {
+        this.unPrearray.push(item);
     }
 
     addItem(item) {
@@ -24,6 +31,9 @@ class Singleton {
 
     cleanItem(){
         this.array = [];
+    }
+    cleanUnPreItem(){
+        this.unPrearray = [];
     }
 
 }

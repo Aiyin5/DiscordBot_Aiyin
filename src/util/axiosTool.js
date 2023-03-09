@@ -1,5 +1,5 @@
 const axios = require('axios');
-
+const baseURL = require('../../config.json')
 class AxiosTool {
     constructor(baseURL) {
         this.axiosInstance = axios.create({
