@@ -25,7 +25,7 @@ module.exports = {
         let content=message.content.toLowerCase();
         if(content.includes('<@1075663991554191370>')){
             await message.reply(`
-            谢谢@我: ${message.author.username}
+                    谢谢@我: ${message.author.username}
             我有以下的这些功能
             1.可以问我关于seeDao的问题
             2.可以用'/获取头像'加上描述获取一张头像
