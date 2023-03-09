@@ -6,7 +6,8 @@ function isQuestion(content) {
         return true;
     }
     else if(content.includes('什么') ||content.includes('如何') ||
-        content.includes('怎么') || content.includes('哪些')){
+        content.includes('怎么') || content.includes('哪些') ||
+        content.includes('怎样') || content.includes('哪里')){
         return true;
     }
     else{
@@ -24,6 +25,10 @@ module.exports = {
         let content=message.content.toLowerCase();
         if(content.includes('<@1075663991554191370>')){
             await message.reply(`谢谢@我: ${message.author.username}`);
+        }
+        if(content.includes('<@') && !content.includes('<@1075663991554191370>')){
+            //不是@机器人的消息返回
+            return;
         }
         content = content.replace(/\s*/g,"");
         if(!isQuestion(content)){
@@ -62,7 +67,7 @@ module.exports = {
             }
             //await bingNew(chatBot,message,content);
             if(!fg){
-                await message.reply("不好意思，这个问题我暂时还没有办法回答");
+                await message.reply("不好意思，这个问题超纲了（seedao notion里没有提及，可以去“有问有答”频道问一问在线的小伙伴呢～）");
             }
         }
     },
