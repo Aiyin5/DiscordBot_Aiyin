@@ -2,7 +2,7 @@ const seeDaoAi=require('./interface/seedaoAi')
 const bingNew=require('./interface/bingNew');
 const instance = require("../util/caInstance");
 function isQuestion(content) {
-    if(content.includes('?') || content.includes('？')){
+    if(content.includes('?') || content.includes('？') || content.includes('吗')){
         return true;
     }
     else if(content.includes('什么') ||content.includes('如何') ||
