@@ -24,7 +24,14 @@ module.exports = {
         }
         let content=message.content.toLowerCase();
         if(content.includes('<@1075663991554191370>')){
-            await message.reply(`谢谢@我: ${message.author.username}`);
+            await message.reply(`
+            谢谢@我: ${message.author.username}
+            我有以下的这些功能
+            1.可以问我关于seeDao的问题
+            2.可以用'/获取头像'加上描述获取一张头像
+            3.可以用'/newgpt'跟chatGpt对话
+            4.可以找我领取任务和查询任务信息（暂未上线）
+            5.其他功能在更新中、、、`);
         }
         if(content.includes('<@') && !content.includes('<@1075663991554191370>')){
             //不是@机器人的消息返回
