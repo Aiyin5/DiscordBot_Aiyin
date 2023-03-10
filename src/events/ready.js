@@ -7,7 +7,7 @@ module.exports = {
         try {
             await client.user.setPresence({activities: [{name: 'test@command'}], status: 'idle'});
             await client.user.setUsername(instance.getBotInfo().name);
-            await client.user.setAvatar('../output.jpg');
+            //await client.user.setAvatar('../output.jpg');
         } catch (error) {
             console.error(error);
         }
