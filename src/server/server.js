@@ -82,7 +82,8 @@ function serverStart(client,cosItem,path,lpath){
                         instance.setBotInfo(preData.name,preData.contents);
                         let base64String=preData.avatar;
                         const outputFilePath = path.join(lpath, 'output.jpg');
-                        instance.base64ToImage(base64String, outputFilePath);
+                        await instance.base64ToImage(base64String, outputFilePath);
+                        console.log(outputFilePath);
                         await client.user.setUsername(instance.getBotInfo().name);
                         await client.user.setAvatar(outputFilePath);
                         res.end("更新完成");
