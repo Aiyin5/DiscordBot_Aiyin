@@ -1,3 +1,5 @@
+const fs = require("fs");
+
 class Singleton {
     constructor() {
         if (!Singleton.instance) {
@@ -47,7 +49,12 @@ class Singleton {
     cleanUnPreItem(){
         this.unPrearray = [];
     }
-
+    // 将 Base64 字符串转换成图片文件
+    base64ToImage(base64String, outputFilePath) {
+        const base64Data = base64String.replace(/^data:image\/\w+;base64,/, '');
+        const buffer = Buffer.from(base64Data, 'base64');
+        fs.writeFileSync(outputFilePath, buffer);
+    };
 }
 
 const instance = new Singleton();

@@ -4,8 +4,9 @@ const fs = require("fs");
 const instance = require("../util/caInstance");
 const openai = require('../util/chatBot')
 const axios = require("axios");
+const path = require("path");
 
-function serverStart(client,cosItem,path){
+function serverStart(client,cosItem,path,lpath){
     http.createServer((req, res) => {
         // 监听 POST 请求
         const { pathname } = url.parse(req.url, true);
@@ -57,6 +58,39 @@ function serverStart(client,cosItem,path){
                         messages: [{role: "user", content: message}],
                     });
                     res.end(JSON.stringify(completion.data.choices[0].message.content));
+                }
+                catch (error) {
+                    console.error(`解析请求体为 JSON 对象出错：${error.message}`);
+                    res.statusCode = 400;
+                    res.end('请求体解析错误');
+                }
+            });
+        }
+        else if (req.method === 'POST' && pathname === '/botInfo' ) {
+            let body = '';
+            req.on('data', (data) => {
+                body += data;
+                console.log("接收到Post的请求");
+            });
+            req.on('end',   async () => {
+                try{
+                    let preData;
+                    axios.get('http://www.free-be.xyz:3000/botInfo').
+                    then(async (response)  => {
+                        preData=response.data[0];
+                        // 处理响应
+                        instance.setBotInfo(preData.name,preData.contents);
+                        let base64String=preData.avatar;
+                        const outputFilePath = path.join(lpath, 'output.jpg');
+                        instance.base64ToImage(base64String, outputFilePath);
+                        await client.user.setUsername(instance.getBotInfo().name);
+                        await client.user.setAvatar(outputFilePath);
+                        res.end("更新完成");
+                    }).catch(error => {
+                        console.log(error);
+                        res.statusCode = 400;
+                        res.end("更新失败");
+                    });
                 }
                 catch (error) {
                     console.error(`解析请求体为 JSON 对象出错：${error.message}`);

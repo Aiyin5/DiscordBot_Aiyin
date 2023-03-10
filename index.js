@@ -26,7 +26,7 @@ const commandFolders = fs.readdirSync("./src/commands");
     const config = await loadEdgeGPTConfig();
     const chatBot = new ChatBot(config);
     await chatBot.create();*/
-    server(client,cosItem,path);
+    server(client,cosItem,path,'./src');
     for (file of functions) {
         require(`./src/functions/${file}`)(client);
     }
