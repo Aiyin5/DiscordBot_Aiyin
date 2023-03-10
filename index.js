@@ -21,7 +21,7 @@ const eventFiles = fs.readdirSync("./src/events").filter(file => file.endsWith("
 const commandFolders = fs.readdirSync("./src/commands");
 
 (async () => {
-    await preparedata();
+    await preparedata('./src');
 /*    await cosItem.getCookie();
     const config = await loadEdgeGPTConfig();
     const chatBot = new ChatBot(config);

@@ -4,12 +4,24 @@ class Singleton {
             Singleton.instance = this;
             this.array = [];
             this.unPrearray = [];
+            this.botInfo = {
+                "name":"AMA_BOT",
+                "url":"../../ama_bot.jpg",
+                "info":" "
+            }
         }
         return Singleton.instance;
     }
 
     getArray() {
         return this.array;
+    }
+    getBotInfo(){
+        return this.botInfo;
+    }
+    setBotInfo(name,info){
+        this.botInfo.name=name;
+        this.botInfo.info=info;
     }
     getUnPreArray() {
         return this.unPrearray;
