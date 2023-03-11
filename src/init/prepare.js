@@ -29,9 +29,9 @@ module.exports =async (lpath)=> {
         let preData3 =await axiosIns.get("/botInfo",{"data":"get"});
         let item3=preData3[0];
         instance.setBotInfo(item3.name,item3.contents);
-        let base64String=item3.avatar;
+/*        let base64String=item3.avatar;
         const outputFilePath = path.join(lpath, 'output.jpg');
-        instance.base64ToImage(base64String, outputFilePath);
+        instance.base64ToImage(base64String, outputFilePath);*/
     }
     catch(error){
         console.log(error);
