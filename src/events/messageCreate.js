@@ -7,7 +7,7 @@ function isQuestion(content) {
     }
     else if(content.includes('什么') ||content.includes('如何') ||
         content.includes('怎么') || content.includes('哪些') ||
-        content.includes('怎样') || content.includes('哪里')){
+        content.includes('怎样') || content.includes('哪里')||content.includes('多少')){
         return true;
     }
     else{

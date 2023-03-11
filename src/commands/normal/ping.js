@@ -7,12 +7,11 @@ module.exports = {
 		.setDescription('获取当前的前置拦截!'),
 	async execute(interaction) {
 		let arr=instance.getArray();
-		console.log(arr);
 		if(arr.length===0){
 			return interaction.reply("没有前置拦截");
 		}
 		else {
-			let str="当前的前10条置拦截：";
+			let str="当前的前10条前置拦截：";
 			let idx=0;
 			for(let item of arr){
 				if(idx>10){
