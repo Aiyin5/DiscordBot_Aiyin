@@ -7,7 +7,7 @@ module.exports =async (chatBot,message,content)=> {
     try {
         let outcontent="请搜索关于seedao的内容，并回答这个问题："
         let sendContent=outcontent+content;
-        chatBot.askAsync(content)
+        chatBot.askAsync(sendContent)
             .then(async (response) => {
                 let str=response.toString();
                 if(response.includes("搜索结果，")){
