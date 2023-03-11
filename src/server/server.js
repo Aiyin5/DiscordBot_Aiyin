@@ -80,10 +80,10 @@ function serverStart(client,cosItem,path,lpath){
                         preData=response.data[0];
                         // 处理响应
                         instance.setBotInfo(preData.name,preData.contents);
-                        let base64String=preData.avatar;
-                        const outputFilePath = path.join(lpath, 'output.jpg');
-                        await instance.base64ToImage(base64String, outputFilePath);
-                        console.log(outputFilePath);
+                        //let base64String=preData.avatar;
+                        //const outputFilePath = path.join(lpath, 'output.jpg');
+                        //await instance.base64ToImage(base64String, outputFilePath);
+                        //console.log(outputFilePath);
                         await client.user.setUsername(instance.getBotInfo().name);
                         //await client.user.setAvatar(outputFilePath);
                         res.end("更新完成");

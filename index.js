@@ -21,16 +21,16 @@ const eventFiles = fs.readdirSync("./src/events").filter(file => file.endsWith("
 const commandFolders = fs.readdirSync("./src/commands");
 
 (async () => {
-    await preparedata('./src');
-/*    await cosItem.getCookie();
+    await preparedata();
+    await cosItem.getCookie();
     const config = await loadEdgeGPTConfig();
     const chatBot = new ChatBot(config);
-    await chatBot.create();*/
+    await chatBot.create();
     server(client,cosItem,path,'./src');
     for (file of functions) {
         require(`./src/functions/${file}`)(client);
     }
-    client.handleEvents(eventFiles, "./src/events");
+    client.handleEvents(eventFiles, "./src/events",chatBot);
     client.handleCommands(commandFolders, "./src/commands");
     client.login(token);
 })();

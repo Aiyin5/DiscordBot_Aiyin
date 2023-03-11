@@ -16,7 +16,7 @@ function isQuestion(content) {
 }
 module.exports = {
     name: 'messageCreate',
-    async execute(message, client) {
+    async execute(message, client,chatBot) {
         //如果消息的发起者是机器人，就不理会
         let author=message.author;
         if(author.id.includes('1075663991554191370')){
@@ -74,7 +74,8 @@ module.exports = {
             }
             //await bingNew(chatBot,message,content);
             if(!fg){
-                await message.reply("不好意思，这个问题超纲了（seedao notion里没有提及，可以去“有问有答”频道问一问在线的小伙伴呢～）");
+                await bingNew(chatBot,message,content);
+                //await message.reply("不好意思，这个问题超纲了（seedao notion里没有提及，可以去“有问有答”频道问一问在线的小伙伴呢～）");
             }
         }
     },

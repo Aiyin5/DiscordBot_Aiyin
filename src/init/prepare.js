@@ -5,7 +5,7 @@ const axiosIns=new AxiosTool(baseURL);
 const fs = require('fs');
 const path = require('path');
 
-module.exports =async (lpath)=> {
+module.exports =async ()=> {
     try {
         let preData = await axiosIns.get("/data",{"data":"get"});
         for(let item of preData){

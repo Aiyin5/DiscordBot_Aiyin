@@ -1,7 +1,7 @@
 const instance = require("../util/caInstance");
 module.exports = {
     name: 'guildMemberAdd',
-    async execute(guildmember, client) {
+    async execute(guildmember, client,chatBot) {
         //console.log(guildmember);
         let user=guildmember.user.username;
         let id=guildmember.id;
