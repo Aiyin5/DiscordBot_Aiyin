@@ -6,6 +6,12 @@ module.exports = {
         let user=guildmember.user.username;
         let id=guildmember.id;
         //await guildmember.send(`hello,\`${user}\``)
-       await client.users.send(id,instance.getBotInfo().info);
+        try {
+            await client.users.send(id,instance.getBotInfo().info);
+        }
+        catch (err){
+            console.log(err);
+        }
+
     },
 };

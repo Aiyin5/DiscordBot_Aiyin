@@ -11,6 +11,7 @@ class Singleton {
                 "url":"../../ama_bot.jpg",
                 "info":" "
             }
+            this.busyType=false;
         }
         return Singleton.instance;
     }
@@ -31,7 +32,12 @@ class Singleton {
     addUnPreItem(item) {
         this.unPrearray.push(item);
     }
-
+    getBusyType(){
+        return this.busyType;
+    }
+    setBusyType(type){
+        this.busyType=type;
+    }
     addItem(item) {
         this.array.push(item);
     }
